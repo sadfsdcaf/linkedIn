@@ -3,15 +3,14 @@ import pandas as pd
 def process_contacts(file_path):
     try:
         print(f"Attempting to read: {file_path}")
-        try:
-            data = pd.read_csv(file_path, delimiter='\t', encoding='utf-8')
-        except UnicodeDecodeError:
-            print("UTF-8 decode failed, trying 'latin1'...")
-            data = pd.read_csv(file_path, delimiter='\t', encoding='latin1')
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
 
-        print(f"Found {len(data)} contacts.")
-        for name in data['name']:
-            print(f"Would send LinkedIn connection request to: {name}")
+        print(f"Found {len(lines)} contacts.")
+        for line in lines:
+            name = line.strip()
+            if name:
+                print(f"Would send LinkedIn connection request to: {name}")
         print("Process complete.")
 
     except FileNotFoundError:

@@ -4,10 +4,10 @@ def process_contacts(file_path):
     try:
         print(f"Attempting to read: {file_path}")
         try:
-            data = pd.read_csv(file_path, encoding='utf-8')
+            data = pd.read_csv(file_path, delimiter='\t', encoding='utf-8')
         except UnicodeDecodeError:
             print("UTF-8 decode failed, trying 'latin1'...")
-            data = pd.read_csv(file_path, encoding='latin1')
+            data = pd.read_csv(file_path, delimiter='\t', encoding='latin1')
 
         print(f"Found {len(data)} contacts.")
         for name in data['name']:
@@ -20,4 +20,4 @@ def process_contacts(file_path):
         print(f"Error processing contacts: {e}")
 
 if __name__ == "__main__":
-    process_contacts("linkedin.csv")
+    process_contacts("linkedin.txt")

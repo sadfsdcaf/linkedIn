@@ -1,4 +1,4 @@
-```yaml
+
 name: Process LinkedIn Contacts
 
 on:
@@ -24,4 +24,3 @@ jobs:
       - name: Run Python script
         run: |
           python process_contacts.py
-```
